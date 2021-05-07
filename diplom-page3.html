@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="scripts.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="main-page3-container">
+<div class="main-page3-container__block ">
+	<div class="main-page3-container__block-img ">
+		
+		<div class="main-page3-container__block-flex main-page3-container__block-top">
+			<div class="disNon" id='numberTovar'>
+				
+			</div>
+			<div class="block-flex__text ">
+				Категория
+			</div>
+			<select  class="block-flex__select" id='kategoria'>
+				  <option  value="">Выберите категорию</option>
+				<option value="komodi">Тумбы и комоды</option>
+  				<option value='kitchen'> Кухонные гарнитуры</option>
+  				<option value='shkaf'>Шкаф</option>
+  				<option value='myagkaya'>Мягкая мебель</option>
+  				<option value='stulia'>Стулья</option>
+  				<option value='stoli'>Столы</option>
+				<option value='spalnaya'>Спальня</option>
+			</select> 
+		</div>
+		<div class="main-page3-container__block-flex">
+			<div class="block-flex__text">
+				Материал
+			</div>
+			<select  class="block-flex__select" id='material'>
+				 <option  value="">Выберите материал</option>
+				<option value="dsp">ДСП</option>
+  				<option value="mdf">МДФ</option>
+  				<option value="stal">Сталь</option>
+  				<option value="derevo">Массив дерева</option>
+  				<option value="steklo">Стекло</option>
+  				<option value="plastic">Пластик</option>
+			</select> 
+		</div>
+		
+			<div class="main-page3-container__block-flex model-choise" id='komodi'>
+				<div class="block-flex__text">
+					Модель
+				</div>
+				<select  class="block-flex__select" id="">
+					 <option  value="">Выберите модель</option>
+					<option>Комод Палермо</option>
+					<option>ТВ тумба Моника 30</option>
+				</select> 
+			</div>
+			<div class="main-page3-container__block-flex model-choise" id='kitchen'>
+				<div class="block-flex__text">
+					Модель
+				</div>
+				<select  class="block-flex__select" id="">
+					 <option  value="">Выберите модель</option>
+					<option>Кухня прямая Палермо</option>
+					<option>Кухонный гарнитур Алиса</option>
+					<option>Кухонный гарнитур Летний</option>
+					<option>Кухонный гарнитур Анна</option>
+				</select> 
+			</div>
+			<div class="main-page3-container__block-flex model-choise" id='shkaf'>
+				<div class="block-flex__text">
+					Модель
+				</div>
+				<select  class="block-flex__select" id="">
+					 <option  value="">Выберите модель</option>
+					<option>Шкаф Моника с зеркалом</option>
+					<option> Барокко</option>
+					<option>Гостиная Стенка Скарлет</option>
+					<option>Гостиная Стенка Скарлет 33</option>
+				</select> 
+			</div>
+			
+			<div class="main-page3-container__block-flex model-choise" id='myagkaya'>
+				<div class="block-flex__text">
+					Модель
+				</div>
+				<select  class="block-flex__select" id="">
+					 <option>Уютный диван</option>
+					 <option>Полудиван Моника с пуфом</option>
+					 <option>Угловой диван Моника</option>
+					<option>Угловой диван Моника</option>
+					<option>Диван прямой Адель</option>
+					<option>Диван Грация</option>
+					<option>Диван прямой Танго</option>
+					<option>Диван прямой Лилия</option>
+					<option>Диван Комфорт Люкс</option>
+					<option>Диван прямой Аккордеон</option>
+				</select> 
+			</div>
+				<div class="main-page3-container__block-flex model-choise" id='stulia'>
+					<div class="block-flex__text">
+						Модель
+					</div>
+					<select  class="block-flex__select" id="">
+						<option>Небольшой табурет с мягким сиденьем</option>
+						<option>Стул 1</option>
+						<option>Стул 2</option>
+					</select> 
+				</div>
+				<div class="main-page3-container__block-flex model-choise" id='stoli'>
+					<div class="block-flex__text">
+						Модель
+					</div>
+					<select  class="block-flex__select" id="">
+						<option>Обеденная группа Версаче</option>
+						<option>Обеденная группа Барокко</option>
+						<option>Обеденный стол Колизей</option>
+						<option>Обеденная группа 1</option>
+						<option>Обеденная группа 2</option>
+						<option>Обеденная группа 3</option>
+					</select> 
+				</div>
+					<div class="main-page3-container__block-flex model-choise" id='spalnaya'>
+					<div class="block-flex__text">
+						Модель
+					</div>
+					<select  class="block-flex__select" id="">
+						<option>Кровать двуспальная Моника</option>
+						<option>Спальный гарнитур БАРОККО</option>
+						<option>Кровать Луиза</option>
+						<option>Спальный гарнитур Палермо</option>
+						<option>Спальный гарнитур Моника 32</option>
+						<option>Спальный гарнитур «Азалия»</option>
+						<option>Кровать двухъярусная</option>
+						<option>Кровать Алина (двуспальная)</option>
+					</select> 
+				</div>
+		<div class="main-page3-container__block-flex">
+			<div class="block-flex__text">
+				Вид набивки
+			</div>
+			<select  class="block-flex__select" id='nabivka'>
+				 <option  value="">Выберите набивку</option>
+				<option>Без набивки</option>
+  				<option>ППУ</option>
+  				<option>Синтепон</option>
+  				<option>Холлофайбер</option>
+  				<option>Натуральный латекс</option>
+  				<option>Поролон</option>
+			</select> 
+		</div>
+			<div class="main-page3-container__block-flex">
+				<div class="block-flex__text">
+					Размеры :
+				</div>
+			</div>
+			<div class="main-page3-container__block-flex_column">
+				<div class="main-page3-container__block-flex ">
+					<div class="block-flex__text">
+						Ширина
+					</div>
+					<input type="number" name="" class="block-flex__input" id="width">
+				</div>
+					<div class="main-page3-container__block-flex ">
+					<div class="block-flex__text">
+						Высота
+					</div>
+					<input type="number" name="" class="block-flex__input" id="height">
+				</div>
+			</div>
+			<div class="main-page3-container__block-flex">
+				<div class="block-flex__text">
+					Цвет :
+				</div>
+				<select  class="block-flex__select">
+				 <option  value="">Выберите цвет</option>
+				<option>Белый</option>
+  				<option>Черный</option>
+  				<option>Мед</option>
+  				<option>Кофе</option>
+  				<option>Махагон</option>
+  				<option>Орех</option>
+  				<option>Венге</option>
+				<option>Патина ч/б</option>
+			</select> 
+			</div>
+			<div class="button-add" id='addButton'>
+				<a href='diplom-page4.html'>
+				<button class="button-add__container" >
+					добавить
+				</button></a>
+			</div>
+	</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

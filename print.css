@@ -1,0 +1,24 @@
+@media print {
+	.main-page4-container__block-img{
+		margin-top: 30px !important
+	}
+	.page4-img-mial {
+		width: 150px;
+	}
+.header-left-top, .a-right-bottom, .time-right-bottom,.border-top-none,.button-add-page4 {
+display: none;
+}
+.ispolnitel-block{
+padding-left: 0px;
+}
+.ispolnitel-block div{
+font-size: 23px;
+line-height: 20px;
+}
+.main-page4-container__title-text{
+	font-size: 30px;
+}
+.print-podpis{
+	display: flex ;
+}
+}
