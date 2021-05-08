@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class OrderController extends Controller
 {
@@ -14,17 +18,6 @@ class OrderController extends Controller
      */
     public function index()
     {
-//        for ($i = 0; $i < 10; $i++) {
-//            $order = new Order();
-//            $order->status = "Отправлен";
-//
-//            if ($i % 2 == 0) {
-//                $order->status = "Изготавливается";
-//            }
-//
-//            $order->save();
-//        }
-
         $orders = Order::all();
 
         return view("order.index", [
@@ -35,11 +28,14 @@ class OrderController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $order = new Order();
+        $order->save();
+
+        return view("order.create")->with("orderId", $order->id);
     }
 
     /**
@@ -50,7 +46,43 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'model' => 'required',
+            'width' => 'required|numeric',
+            'height' => 'required|numeric'
+        ];
+        $validator = Validator::make($request->all(), $rules);
+
+        // Валидируем данные
+        if ($validator->fails()) {
+            return Redirect::to('product/create')
+                ->withErrors($validator);
+        } else {
+            // Сохраняем товар
+            $product = new Product();
+            $product->model = $request->get("model");
+            $product->width = $request->get("width");
+            $product->height = $request->get("height");
+            $product->category = $request->get("category");
+            $product->type = $request->get("type");
+            $product->filling_type = $request->get("filling_type");
+            $product->material = $request->get("material");
+            $product->color = $request->get("color");
+            $product->save();
+
+            // Получаем ID сущностей Товар и Заказ, чтобы установить связь
+            $newProductId = $product->id;
+            $orderId = $request->get("orderId");
+
+            $orderProduct = new OrderProduct();
+            $orderProduct->order_id = $orderId;
+            $orderProduct->product_id = $newProductId;
+            $orderProduct->save();
+
+            // Редиректим на заказ, с которого создавали товар
+            Session::flash('message', 'Товар успешно добавлен в заказ');
+            return Redirect::to("product/$orderId");
+        }
     }
 
     /**

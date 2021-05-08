@@ -13,6 +13,49 @@ use Illuminate\Support\Facades\{Validator, Redirect, Session};
 
 class ProductController extends Controller
 {
+    private $categories = [
+        "none" => "Выберите категорию",
+        "komodi" => "Тумбы и комоды",
+        "kitchen" => "Кухонные гарнитуры",
+        "shkaf" => "Шкаф",
+        "myagkaya" => "Мягкая мебель",
+        "stulia" => "Стулья",
+        "stoli" => "Столы",
+        "spalnaya" => "Спальня",
+    ];
+
+    private $materials = [
+        "none" => "Выберите материал",
+        "dsp" => "ДСП",
+        "mdf" => "МДФ",
+        "stal" => "Сталь",
+        "derevo" => "Массив дерева",
+        "steklo" => "Стекло",
+        "plastic" => "Пластик",
+    ];
+
+    private $fillings = [
+        "none" => "Выберите набивку",
+        "no_fillings" => "Без набивки",
+        "ppy" => "ППУ",
+        "sintepon" => "Синтепон",
+        "xolofaiber" => "Холлофайбер",
+        "latex" => "Натуральный латекс",
+        "porolon" => "Поролон",
+    ];
+
+    private $colors = [
+        "none" => "Выберите цвет",
+        "white" => "Белый",
+        "black" => "Черный",
+        "honey" => "Мед",
+        "kofe" => "Кофе",
+        "maxagon" => "Махагон",
+        "nut" => "Орех",
+        "venge" => "Венге",
+        "patina" => "Патина ч/б",
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +80,12 @@ class ProductController extends Controller
     {
         $orderId = $request->get("orderId");
 
-        return view("product.create")->with("orderId", $orderId);
+        return view("product.create")
+            ->with("orderId", $orderId)
+            ->with("categories", $this->categories)
+            ->with("materials", $this->materials)
+            ->with("fillings", $this->fillings)
+            ->with("colors", $this->colors);
     }
 
     /**
@@ -61,11 +109,13 @@ class ProductController extends Controller
                 ->withErrors($validator);
         } else {
             // Сохраняем товар
+            $category = $request->get("category");
+
             $product = new Product();
-            $product->model = $request->get("model");
+            $product->model = $request->get("model_$category");
             $product->width = $request->get("width");
             $product->height = $request->get("height");
-            $product->category = $request->get("category");
+            $product->category = $category;
             $product->type = $request->get("type");
             $product->filling_type = $request->get("filling_type");
             $product->material = $request->get("material");

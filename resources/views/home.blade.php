@@ -22,11 +22,20 @@
         Оформить новый заказ
     </div>
     <div  class="main-page-container-button">
-        <a href="/login" class="main-page-container-button__link">
-            <div class="main-page-container-button__item">
-                начать
-            </div>
-        </a>
+        @guest
+            <a href="/login" class="main-page-container-button__link">
+                <div class="main-page-container-button__item">
+                    начать
+                </div>
+            </a>
+        @else
+            <a href="/order" class="main-page-container-button__link">
+                <div class="main-page-container-button__item">
+                    начать
+                </div>
+            </a>
+        @endguest
+
     </div>
 </div>
 
