@@ -97,7 +97,6 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $rules = [
-            'model' => 'required',
             'width' => 'required|numeric',
             'height' => 'required|numeric'
         ];
@@ -116,10 +115,12 @@ class ProductController extends Controller
             $product->width = $request->get("width");
             $product->height = $request->get("height");
             $product->category = $category;
-            $product->type = $request->get("type");
+            $product->type = $request->get("model_$category");
             $product->filling_type = $request->get("filling_type");
             $product->material = $request->get("material");
             $product->color = $request->get("color");
+            $product->quantity = $request->get("quantity");
+            $product->price = $request->get("price");
             $product->save();
 
             // Получаем ID сущностей Товар и Заказ, чтобы установить связь
@@ -133,7 +134,7 @@ class ProductController extends Controller
 
             // Редиректим на заказ, с которого создавали товар
             Session::flash('message', 'Товар успешно добавлен в заказ');
-            return Redirect::to("product/$orderId");
+            return Redirect::to("order/create?orderId=$orderId");
         }
     }
 

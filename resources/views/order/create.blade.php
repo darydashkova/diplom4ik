@@ -8,7 +8,7 @@
             type="text/javascript"></script>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Добавление нового заказа</title>
     <script src="{{ asset('js/scripts.js') }}" defer></script>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
@@ -17,11 +17,12 @@
 <body>
 <div class="main-page3-container">
     <div class="main-page3-container__block ">
+        {{ Form::open(array('url' => 'order')) }}
         <div class="main-page4-container__block-img ">
             <div class="main-page4-container__block-container">
                 <img src="{{ asset('css/mial.png') }}" class="page4-img-mial">
                 <div class="main-page4-container__title-text">
-                    Заказ № <span id="number">1</span>
+                    Заказ № <span id="number">{{ $orderId }}</span>
                 </div>
                 <div class="ispolnitel-block">
                     <div class="ispolnitel-block__text">
@@ -51,6 +52,18 @@
                             <th class="button-teble_change border-top-none"></th>
                         </tr>
 
+                        @foreach($products as $value)
+                            <tr>
+                                <td>{{ $value->id  }}</td>
+                                <td>{{ $value->model  }}</td>
+                                <td>{{ $value->quantity }}</td>
+                                <td>{{ $value->price }}</td>
+                                <td>{{ $value->quantity * $value->price  }}</td>
+                                <td class="button-teble_change border-top-none">
+                                </td>
+                            </tr>
+                        @endforeach
+
                         <tr>
 
                             <td></td>
@@ -58,30 +71,37 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td class="button-teble_change border-top-none"><a href='diplom-page3.html'><img
-                                        src="change.png"></a></td>
+
+                            <td class="button-teble_change border-top-none">
+                                <a href="/product/create?orderId={{$orderId}}">
+                                    <img src="{{ asset('css/change.png') }}">
+                                </a>
+                            </td>
                         </tr>
 
                     </table>
-
                 </div>
                 <div class="itog-block">
                     <div class="itog-block__container">
-                        <div class="itog-block__container-item"><span>ДАТА :</span> <input id='date'>12.12.2020</input>
+                        <div class="itog-block__container-item"><span>ДАТА :</span>
+                            <input type="text" id="date" name="updated_at"
+                                   value="{{$order->updated_at->format("d.m.Y")}}"/>
                         </div>
-                        <div class="itog-block__container-item itog-block__container-itogo"><span>ИТОГО: </span> <span
-                                id="itogo">default</span></div>
+                        <div class="itog-block__container-item itog-block__container-itogo">
+                            <span>ИТОГО: </span>
+                            <span id="itogo">
+                                {{ $total  }}
+                            </span>
+                        </div>
 
                     </div>
 
                 </div>
                 <div class="button-add-page4" id='addButton'>
 
-                    <a href='diplom-page5.html'>
-                        <button class="button-add__container" id='addPage4'>
-                            добавить
-                        </button>
-                    </a>
+                    <button type="submit" class="button-add__container" id='addPage4'>
+                        добавить
+                    </button>
 
                     <a class="print-doc" href="javascript:(print());">
                         <div class="button-add__container">
@@ -105,6 +125,7 @@
                 </div>
             </div>
         </div>
+        {{ Form::close() }}
     </div>
 
 </div>

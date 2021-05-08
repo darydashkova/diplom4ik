@@ -8,7 +8,7 @@
             type="text/javascript"></script>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Добавление нового товара</title>
     <script src="{{ asset('js/scripts.js') }}" defer></script>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
@@ -22,6 +22,10 @@
             {{ HTML::ul($errors->all()) }}
 
             {{ Form::open(array('url' => 'product')) }}
+
+            @if($orderId)
+                <input type="hidden" name="orderId" value="{{$orderId}}">
+            @endif
 
             <div class="main-page3-container__block-flex main-page3-container__block-top">
                 <div class="disNon" id='numberTovar'>
@@ -160,6 +164,22 @@
                 </div>
                 {{ Form::select('color', $colors, Request::old('color'), array('class' => 'block-flex__select', 'id' => 'colors')) }}
             </div>
+
+            <div class="main-page3-container__block-flex_column">
+                <div class="main-page3-container__block-flex ">
+                    <div class="block-flex__text">
+                        Цена
+                    </div>
+                    {{ Form::number('price', Request::old('price'), ['class' => 'block-flex__input', 'id' => 'price']) }}
+                </div>
+                <div class="main-page3-container__block-flex ">
+                    <div class="block-flex__text">
+                        Кол-во
+                    </div>
+                    {{ Form::number('quantity', Request::old('quantity'), ['class' => 'block-flex__input', 'id' => 'quantity']) }}
+                </div>
+            </div>
+
             <div class="button-add" id='addButton'>
                 <button type="submit" class="button-add__container">
                     добавить
