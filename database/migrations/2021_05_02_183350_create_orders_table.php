@@ -16,8 +16,8 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string("status");
-            $table->unsignedBigInteger("buyer_id");
-            $table->double("total");
+            $table->unsignedBigInteger("buyer_id")->nullable(true);
+            $table->double("total")->nullable(true);
             $table->foreign("buyer_id")->references("id")->on("buyers");
             $table->timestamps();
         });

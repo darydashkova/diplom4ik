@@ -8,7 +8,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>МиАл - Мебельная фабрика</title>
 
     <script src="{{ asset('js/scripts.js') }}" defer></script>
 
