@@ -82,7 +82,7 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Авторизация</title>
 
     <script src="{{ asset('js/scripts.js') }}" defer></script>
 
