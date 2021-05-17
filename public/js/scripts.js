@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     let scroll = $('.table-block__page5-scroll').height();
     if (scroll < 300) {
@@ -80,6 +80,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
         });*/
     $("#date").mask("99.99.9999");
+
+    $('[data-entity="status"]').change(function () {
+        var selectedStatus = this.value;
+        var token = $('meta[name="csrf-token"]').attr('content');
+        var orderId = this.dataset.id;
+
+        $.ajax({
+            url: '/ajax',
+            type: 'POST',
+            data: { _token: token, status: selectedStatus, orderId: orderId },
+            dataType: 'JSON',
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    });
 
 
 });
