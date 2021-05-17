@@ -24,6 +24,8 @@ Route::group([], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home');
 });
 
+Route::post('/ajax', '\App\Http\Controllers\AjaxController@post');
+
 Route::resource("product", ProductController::class)->middleware("auth");
 
 Route::resource("order", OrderController::class)->middleware("auth");
